@@ -32,7 +32,7 @@ def sequenceZero():
 
 # Sam's second gap sequence - to be added to the OEIS
 def sequenceOne():
-    iterations = 2000
+    iterations = 100000
     sequence = [0] * (iterations*2)
     sequence[0] = 1
     maxValue = 1
@@ -61,8 +61,8 @@ def sequenceOne():
                 firstUnpopulatedN += 1
                 while sequence[firstUnpopulatedN] != 0:
                     firstUnpopulatedN += 1
-    for results in range(iterations):
-        print(sequence[results])
+    for result in range(firstUnpopulatedN):
+        print(sequence[result])
 
 # Aaron's first gap sequence
 def sequenceTwo():
