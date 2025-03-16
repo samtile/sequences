@@ -1,6 +1,6 @@
 # Sam's firs gap sequence - to be added to the OEIS
 def sequenceZero():
-    iterations = 10000
+    iterations = 20000
     sequence = [0] * (iterations*2)
     sequence[0] = 1
     maxNumber = 1
@@ -32,32 +32,32 @@ def sequenceZero():
 
 # Sam's second gap sequence - to be added to the OEIS
 def sequenceOne():
-    iterations = 10000
+    iterations = 2000
     sequence = [0] * (iterations*2)
     sequence[0] = 1
-    maxNumber = 1
-    lastNumber = 1
-    lastN = 0
+    maxValue = 1
+    lastValue = 1
+    n = 0
     done = 0
     for x in range(iterations):
         done = 0
-        for y in range(lastN):
+        for y in range(n):
             if sequence[y] == 0:
-                sequence[y] = lastNumber - lastN + y
-                lastNumber = sequence[y]
-                lastN = y
+                sequence[y] = lastValue - n + y
+                lastValue = sequence[y]
+                n = y
                 done = 1
                 break
         if done == 0:
-            lastN = lastN + lastNumber
+            n = n + lastValue
             while 1:
-                if sequence[lastN] != 0:
-                    lastN = lastN + 1
+                if sequence[n] != 0:
+                    n = n + 1
                 else:
                     break
-            sequence[lastN] = maxNumber + 1
-            lastNumber = maxNumber + 1
-            maxNumber = maxNumber + 1
+            sequence[n] = maxValue + 1
+            lastValue = maxValue + 1
+            maxValue = maxValue + 1
     for results in range(iterations):
         print(sequence[results])
 
@@ -83,9 +83,9 @@ def sequenceTwo():
     for results in range(iterations):
         print(sequence[results])
 
-# Luca's first gap sequence - to be added to the OEIS
+# We thought this was Luca's first gap sequence - but I had misunderstood it and chad created a brand new sequence! - to be added to the OEIS
 def sequenceThree():
-    iterations = 200000
+    iterations = 430000
     sequence = [0] * (iterations*2)
     sequence[0] = 1
     lastNumber = 1
@@ -112,7 +112,40 @@ def sequenceThree():
     for results in range(iterations):
         print(sequence[results])
 
-sequenceZero()
-#sequenceOne()
+# Luca's gap sequence
+def sequenceFour():
+    iterations = 20000
+    sequence = [0] * (iterations*2)
+    sequence[0] = 1
+    lastNumber = 1
+    lastN = 0
+    maxN = 0
+    done = 0
+    for x in range(iterations):
+        done = 0
+        for y in range(lastN):
+            if sequence[y] == 0:
+                sequence[y] = sequence[y-1] + sequence[y+1]
+                lastNumber = sequence[y]
+                lastN = y
+                done = 1
+                break
+        if done == 0:
+            lastN = lastN + lastN + lastNumber + 1
+            while 1:
+                if sequence[lastN] != 0:
+                    lastN = lastN + 1
+                else:
+                    break
+            sequence[lastN] = sequence[maxN] + 1
+            lastNumber = lastNumber + 1
+            if lastN > maxN:
+                maxN = lastN
+    for results in range(iterations):
+        print(sequence[results])
+
+#sequenceZero()
+sequenceOne()
 #sequenceTwo()
 #sequenceThree()
+#sequenceFour()
