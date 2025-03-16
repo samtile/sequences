@@ -37,27 +37,30 @@ def sequenceOne():
     sequence[0] = 1
     maxValue = 1
     lastValue = 1
+    firstUnpopulatedN = 1
     n = 0
-    done = 0
     for x in range(iterations):
-        done = 0
-        for y in range(n):
-            if sequence[y] == 0:
-                sequence[y] = lastValue - n + y
-                lastValue = sequence[y]
-                n = y
-                done = 1
-                break
-        if done == 0:
+        if firstUnpopulatedN < n:
+            sequence[firstUnpopulatedN] = lastValue - n + firstUnpopulatedN
+            n = firstUnpopulatedN
+            lastValue = sequence[n]
+            firstUnpopulatedN += 1
+            while sequence[firstUnpopulatedN] != 0:
+                firstUnpopulatedN += 1
+        else:
             n = n + lastValue
             while 1:
                 if sequence[n] != 0:
-                    n = n + 1
+                    n += 1
                 else:
                     break
             sequence[n] = maxValue + 1
             lastValue = maxValue + 1
-            maxValue = maxValue + 1
+            maxValue += 1
+            if n == firstUnpopulatedN:
+                firstUnpopulatedN += 1
+                while sequence[firstUnpopulatedN] != 0:
+                    firstUnpopulatedN += 1
     for results in range(iterations):
         print(sequence[results])
 
