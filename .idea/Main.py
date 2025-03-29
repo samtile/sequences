@@ -1,4 +1,6 @@
-# Sam's firs gap sequence - to be added to the OEIS
+import itertools as it
+
+# Sam's first gap sequence - to be added to the OEIS
 def sequenceZero():
     iterations = 20000
     sequence = [0] * (iterations*2)
@@ -136,8 +138,46 @@ def sequenceFour():
     for results in range(iterations):
         print(sequence[results])
 
+# Aaron's newest, based on sequence one with a slight change to add both adjacent terms on the backward steps
+def sequenceFive():
+    requiredTerms = 5000
+    sequence = [None] * (requiredTerms*5)
+    sequence[0] = 1
+    maxValue = 1
+    lastValue = 1
+    firstUnpopulatedN = 1
+    n = 0
+    while 1:
+        if firstUnpopulatedN >= requiredTerms:
+            break
+        if firstUnpopulatedN < n:
+            sequence[firstUnpopulatedN] = lastValue - n + firstUnpopulatedN + sequence[firstUnpopulatedN-1]
+            if(sequence[firstUnpopulatedN+1]!=None):
+                sequence[firstUnpopulatedN] = sequence[firstUnpopulatedN] + sequence[firstUnpopulatedN+1]
+            n = firstUnpopulatedN
+            lastValue = sequence[n]
+            firstUnpopulatedN += 1
+            while sequence[firstUnpopulatedN] != None:
+                firstUnpopulatedN += 1
+        else:
+            n = n + lastValue
+            while 1:
+                if sequence[n] != None:
+                    n += 1
+                else:
+                    break
+            sequence[n] = next(i for i in range(maxValue,requiredTerms*10) if i not in sequence and i!=0)
+            lastValue = sequence[n]
+            if n == firstUnpopulatedN:
+                firstUnpopulatedN += 1
+                while sequence[firstUnpopulatedN] != None:
+                    firstUnpopulatedN += 1
+    for result in range(requiredTerms):
+        print(sequence[result])
+
 #sequenceZero()
-sequenceOne()
+#sequenceOne()
 #sequenceTwo()
 #sequenceThree()
 #sequenceFour()
+sequenceFive()
