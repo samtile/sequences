@@ -79,13 +79,13 @@ def sequenceTwo():
 
 # We thought this was Luca's first gap sequence - but I had misunderstood it and chad created a brand new sequence! - to be added to the OEIS
 def sequenceThree():
-    iterations = 430000
-    sequence = [0] * (iterations*2)
+    iterations = 1000000
+    sequence = [0] * (iterations*3)
     sequence[0] = 1
     lastNumber = 1
     lastN = 0
     done = 0
-    for x in range(iterations):
+    while(True):
         done = 0
         for y in range(lastN):
             if sequence[y] == 0:
@@ -94,6 +94,8 @@ def sequenceThree():
                 lastN = y
                 done = 1
                 break
+        if lastN>=iterations:
+            break
         if done == 0:
             lastN = lastN + lastN + lastNumber + 1
             while 1:
@@ -103,12 +105,13 @@ def sequenceThree():
                     break
             sequence[lastN] = lastNumber + 1
             lastNumber = lastNumber + 1
-    for results in range(iterations):
-        print(sequence[results])
+    with open('seq3.txt', 'w') as f:
+        for i in range(iterations):
+            f.write(f"{sequence[i]}\n")
 
 # Luca's gap sequence
 def sequenceFour():
-    iterations = 20000
+    iterations = 100
     sequence = [0] * (iterations*2)
     sequence[0] = 1
     lastNumber = 1
@@ -178,6 +181,6 @@ def sequenceFive():
 #sequenceZero()
 #sequenceOne()
 #sequenceTwo()
-#sequenceThree()
+sequenceThree()
 #sequenceFour()
-sequenceFive()
+#sequenceFive()
