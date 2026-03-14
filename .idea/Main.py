@@ -1,8 +1,8 @@
 import itertools as it
 
-# Sam's first gap sequence - to be added to the OEIS
+# Sam's first gap sequence - see google drive for outputs and graphs of all the below - https://docs.google.com/spreadsheets/d/1UBYSHCKK6YWYuRltzxj-rm1j-X8_i8P-qhXHDmR8lmU/edit?gid=550273439#gid=550273439
 def sequenceZero():
-    iterations = 20000
+    iterations = 1000
     sequence = [0] * (iterations*2)
     sequence[0] = 1
     maxNumber = 1
@@ -32,7 +32,7 @@ def sequenceZero():
     for results in range(iterations):
         print(sequence[results])
 
-# Sam's second gap sequence - to be added to the OEIS
+# Sam's second gap sequence - OEIS A382482
 def sequenceOne():
     requiredTerms = 100
     sequence = [None] * (requiredTerms*2)
@@ -57,7 +57,7 @@ def sequenceOne():
 
 # Aaron's first gap sequence
 def sequenceTwo():
-    iterations = 1000
+    iterations = 10
     sequence = [0] * (iterations*2)
     processed = [0] * (iterations*2)
     sequence[0] = 1
@@ -77,9 +77,9 @@ def sequenceTwo():
     for results in range(iterations):
         print(sequence[results])
 
-# We thought this was Luca's first gap sequence - but I had misunderstood it and chad created a brand new sequence! - to be added to the OEIS
+# We thought this was Luca's first gap sequence - but I had misunderstood it and had created a brand new sequence! - to be added to the OEIS
 def sequenceThree():
-    iterations = 1000000
+    iterations = 700000
     sequence = [0] * (iterations*3)
     sequence[0] = 1
     lastNumber = 1
@@ -96,6 +96,8 @@ def sequenceThree():
                 break
         if lastN>=iterations:
             break
+        if lastN%1000==0:
+            print(lastN)
         if done == 0:
             lastN = lastN + lastN + lastNumber + 1
             while 1:
@@ -111,7 +113,7 @@ def sequenceThree():
 
 # Luca's gap sequence
 def sequenceFour():
-    iterations = 100
+    iterations = 200
     sequence = [0] * (iterations*2)
     sequence[0] = 1
     lastNumber = 1
@@ -136,6 +138,8 @@ def sequenceFour():
                     break
             sequence[lastN] = sequence[maxN] + 1
             lastNumber = lastNumber + 1
+            for results in range(iterations):
+                print(sequence[results])
             if lastN > maxN:
                 maxN = lastN
     for results in range(iterations):
@@ -143,7 +147,7 @@ def sequenceFour():
 
 # Aaron's newest, based on sequence one with a slight change to add both adjacent terms on the backward steps
 def sequenceFive():
-    requiredTerms = 5000
+    requiredTerms = 500
     sequence = [None] * (requiredTerms*5)
     sequence[0] = 1
     maxValue = 1
@@ -180,7 +184,7 @@ def sequenceFive():
 
 #sequenceZero()
 #sequenceOne()
-#sequenceTwo()
-sequenceThree()
+sequenceTwo()
+#sequenceThree()
 #sequenceFour()
 #sequenceFive()
